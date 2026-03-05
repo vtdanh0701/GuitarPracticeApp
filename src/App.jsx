@@ -10,6 +10,7 @@ import SpeedDrill from './components/SpeedDrill';
 import StringFocus from './components/StringFocus';
 import PlayByEar from './components/PlayByEar';
 import { useMetronome } from './hooks/useMetronome';
+import { unlockAudio } from './hooks/useMetronome';
 import { ALL_NOTES, pickRandomNotes, getFilteredNotes, getNoteDisplayName } from './data/notes';
 import './App.css';
 
@@ -23,6 +24,21 @@ const MODES = [
 ];
 
 function App() {
+  // Unlock audio on very first user tap/click (iOS / mobile requirement)
+  useEffect(() => {
+    const handleFirstInteraction = () => {
+      unlockAudio();
+      window.removeEventListener('click', handleFirstInteraction, true);
+      window.removeEventListener('touchend', handleFirstInteraction, true);
+    };
+    window.addEventListener('click', handleFirstInteraction, true);
+    window.addEventListener('touchend', handleFirstInteraction, true);
+    return () => {
+      window.removeEventListener('click', handleFirstInteraction, true);
+      window.removeEventListener('touchend', handleFirstInteraction, true);
+    };
+  }, []);
+
   // Mode
   const [mode, setMode] = useState('free');
 

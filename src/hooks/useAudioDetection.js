@@ -67,7 +67,12 @@ export function useAudioDetection({ bufferSize = 4096, threshold = 0.15 } = {}) 
       streamRef.current = stream;
 
       // Create audio context and analyser
+      // Use a separate AudioContext for mic input (needs its own lifecycle)
       const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      // Resume immediately — startListening is called from a user gesture
+      if (audioContext.state === 'suspended') {
+        await audioContext.resume();
+      }
       audioContextRef.current = audioContext;
 
       const analyser = audioContext.createAnalyser();
