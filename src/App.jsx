@@ -346,6 +346,17 @@ function App() {
           <StringFocus noteFilter={noteFilter} />
         </div>
       ) : null}
+
+      {/* Buy Me a Coffee button */}
+      <a
+        href="https://buymeacoffee.com/YOUR_USERNAME"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="bmc-button"
+        title="Buy me a coffee"
+      >
+        ☕ Buy me a coffee
+      </a>
     </div>
   );
 }
