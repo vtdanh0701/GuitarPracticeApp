@@ -8,6 +8,7 @@ import NameTheNote from './components/NameTheNote';
 import FindTheNote from './components/FindTheNote';
 import SpeedDrill from './components/SpeedDrill';
 import StringFocus from './components/StringFocus';
+import PlayByEar from './components/PlayByEar';
 import { useMetronome } from './hooks/useMetronome';
 import { ALL_NOTES, pickRandomNotes, getFilteredNotes, getNoteDisplayName } from './data/notes';
 import './App.css';
@@ -17,6 +18,7 @@ const MODES = [
   { id: 'name-note',   label: '🎯 Name the Note',   desc: 'Identify notes at fretboard positions' },
   { id: 'find-note',   label: '🔍 Find the Note',   desc: 'Locate notes on the fretboard' },
   { id: 'speed-drill', label: '⚡ Speed Drill',     desc: 'Timed identification challenge' },
+  { id: 'play-by-ear', label: '🎤 Play By Ear',     desc: 'Play notes on your guitar — app listens' },
   { id: 'string-focus', label: '🎵 String Focus',   desc: 'Learn one string at a time' },
 ];
 
@@ -344,6 +346,11 @@ function App() {
         /* ===== STRING FOCUS ===== */
         <div className="mode-content">
           <StringFocus noteFilter={noteFilter} />
+        </div>
+      ) : mode === 'play-by-ear' ? (
+        /* ===== PLAY BY EAR ===== */
+        <div className="mode-content">
+          <PlayByEar selectedStrings={selectedStrings} noteFilter={noteFilter} />
         </div>
       ) : null}
 
