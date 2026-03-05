@@ -152,10 +152,9 @@ export default function NameTheNote({ selectedStrings: initialStrings, noteFilte
         <div style={{ overflowX: 'auto', margin: '0 -8px', padding: '0 8px' }}>
           <div style={{
             display: 'grid',
-            gridTemplateColumns: `50px repeat(${NUM_FRETS}, 1fr)`,
-            gridTemplateRows: 'repeat(6, 36px)',
+            gridTemplateColumns: `var(--fb-label) repeat(${NUM_FRETS}, 1fr)`,
+            gridTemplateRows: 'repeat(6, var(--fb-row))',
             gap: 0,
-            minWidth: 700,
             position: 'relative',
             background: 'linear-gradient(180deg, #3e2723 0%, #4e342e 100%)',
             borderRadius: 8,
@@ -165,7 +164,7 @@ export default function NameTheNote({ selectedStrings: initialStrings, noteFilte
             {/* Fret marker dots overlay */}
             <div style={{
               position: 'absolute',
-              top: 0, left: 50, right: 0, bottom: 0,
+              top: 0, left: 'var(--fb-label)', right: 0, bottom: 0,
               display: 'grid',
               gridTemplateColumns: `repeat(${NUM_FRETS}, 1fr)`,
               pointerEvents: 'none',
@@ -220,10 +219,10 @@ export default function NameTheNote({ selectedStrings: initialStrings, noteFilte
                     {isTargetString && position.fret === 0 && (
                       <div style={{
                         position: 'absolute',
-                        width: 26, height: 26, borderRadius: '50%',
+                        width: 'var(--fb-dot)', height: 'var(--fb-dot)', borderRadius: '50%',
                         background: isCorrect === true ? '#2ecc71' : isCorrect === false ? '#e74c3c' : '#fff',
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        fontSize: 10, fontWeight: 800, color: '#000', zIndex: 1,
+                        fontSize: 'var(--fb-dot-font)', fontWeight: 800, color: '#000', zIndex: 1,
                         boxShadow: `0 0 10px ${isCorrect === true ? '#2ecc71' : isCorrect === false ? '#e74c3c' : '#fff'}88`,
                       }}>
                         {isCorrect !== null ? correctName : '?'}
@@ -261,10 +260,10 @@ export default function NameTheNote({ selectedStrings: initialStrings, noteFilte
                         {/* Target dot */}
                         {isTarget && (
                           <div style={{
-                            width: 26, height: 26, borderRadius: '50%',
+                            width: 'var(--fb-dot)', height: 'var(--fb-dot)', borderRadius: '50%',
                             background: isCorrect === true ? '#2ecc71' : isCorrect === false ? '#e74c3c' : '#fff',
                             display: 'flex', alignItems: 'center', justifyContent: 'center',
-                            fontSize: 10, fontWeight: 800, color: '#000', zIndex: 1,
+                            fontSize: 'var(--fb-dot-font)', fontWeight: 800, color: '#000', zIndex: 1,
                             boxShadow: `0 0 10px ${isCorrect === true ? '#2ecc71' : isCorrect === false ? '#e74c3c' : '#fff'}88`,
                             animation: isCorrect === null ? 'pulse 1.5s infinite' : 'none',
                           }}>
@@ -282,8 +281,7 @@ export default function NameTheNote({ selectedStrings: initialStrings, noteFilte
           {/* Fret numbers */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: `50px repeat(${NUM_FRETS}, 1fr)`,
-            minWidth: 700,
+            gridTemplateColumns: `var(--fb-label) repeat(${NUM_FRETS}, 1fr)`,
             padding: '4px 4px 0',
           }}>
             <div />

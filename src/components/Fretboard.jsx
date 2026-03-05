@@ -23,10 +23,9 @@ export default function Fretboard({ currentNote, numFrets = NUM_FRETS, selectedS
     }}>
       <div style={{
         display: 'grid',
-        gridTemplateColumns: `50px repeat(${numFrets}, 1fr)`,
-        gridTemplateRows: `repeat(6, 36px)`,
+        gridTemplateColumns: `var(--fb-label) repeat(${numFrets}, 1fr)`,
+        gridTemplateRows: `repeat(6, var(--fb-row))`,
         gap: 0,
-        minWidth: 700,
         position: 'relative',
         background: 'linear-gradient(180deg, #3e2723 0%, #4e342e 100%)',
         borderRadius: 8,
@@ -36,7 +35,7 @@ export default function Fretboard({ currentNote, numFrets = NUM_FRETS, selectedS
         {/* Fret marker dots — overlaid on fretboard */}
         <div style={{
           position: 'absolute',
-          top: 0, left: 50, right: 0, bottom: 0,
+          top: 0, left: 'var(--fb-label)', right: 0, bottom: 0,
           display: 'grid',
           gridTemplateColumns: `repeat(${numFrets}, 1fr)`,
           pointerEvents: 'none',
@@ -93,8 +92,8 @@ export default function Fretboard({ currentNote, numFrets = NUM_FRETS, selectedS
               {isActive(stringIdx + 1, 0) && (
                 <div style={{
                   position: 'absolute',
-                  width: 24,
-                  height: 24,
+                  width: 'var(--fb-dot)',
+                  height: 'var(--fb-dot)',
                   borderRadius: '50%',
                   border: `2px solid ${currentNote.color}`,
                   opacity: 0.6,
@@ -133,14 +132,14 @@ export default function Fretboard({ currentNote, numFrets = NUM_FRETS, selectedS
                   {/* Note dot */}
                   {active && (
                     <div style={{
-                      width: 26,
-                      height: 26,
+                      width: 'var(--fb-dot)',
+                      height: 'var(--fb-dot)',
                       borderRadius: '50%',
                       background: currentNote.color,
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      fontSize: 10,
+                      fontSize: 'var(--fb-dot-font)',
                       fontWeight: 800,
                       color: '#fff',
                       zIndex: 1,
@@ -160,8 +159,7 @@ export default function Fretboard({ currentNote, numFrets = NUM_FRETS, selectedS
       {/* Fret numbers */}
       <div style={{
         display: 'grid',
-        gridTemplateColumns: `50px repeat(${numFrets}, 1fr)`,
-        minWidth: 700,
+        gridTemplateColumns: `var(--fb-label) repeat(${numFrets}, 1fr)`,
         padding: '2px 4px 0',
       }}>
         <div />

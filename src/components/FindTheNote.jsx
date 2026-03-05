@@ -134,9 +134,8 @@ export default function FindTheNote({ selectedStrings: initialStrings, noteFilte
       <div className="find-fretboard-wrap">
         <div className="find-fretboard" style={{
           display: 'grid',
-          gridTemplateColumns: `44px repeat(${NUM_FRETS}, 1fr)`,
-          gridTemplateRows: 'repeat(6, 34px)',
-          minWidth: 700,
+          gridTemplateColumns: `var(--fb-label) repeat(${NUM_FRETS}, 1fr)`,
+          gridTemplateRows: 'repeat(6, var(--fb-row))',
           position: 'relative',
           background: 'linear-gradient(180deg, #3e2723 0%, #4e342e 100%)',
           borderRadius: 8,
@@ -146,7 +145,7 @@ export default function FindTheNote({ selectedStrings: initialStrings, noteFilte
           {/* Fret marker dots overlay */}
           <div style={{
             position: 'absolute',
-            top: 0, left: 44, right: 0, bottom: 0,
+            top: 0, left: 'var(--fb-label)', right: 0, bottom: 0,
             display: 'grid',
             gridTemplateColumns: `repeat(${NUM_FRETS}, 1fr)`,
             pointerEvents: 'none',
@@ -200,7 +199,7 @@ export default function FindTheNote({ selectedStrings: initialStrings, noteFilte
                       return (
                         <div style={{
                           position: 'absolute',
-                          width: 22, height: 22, borderRadius: '50%',
+                          width: 'var(--fb-dot)', height: 'var(--fb-dot)', borderRadius: '50%',
                           background: clicked.correct ? '#2ecc71' : '#e74c3c',
                           opacity: 0.7,
                         }} />
@@ -210,7 +209,7 @@ export default function FindTheNote({ selectedStrings: initialStrings, noteFilte
                       return (
                         <div style={{
                           position: 'absolute',
-                          width: 22, height: 22, borderRadius: '50%',
+                          width: 'var(--fb-dot)', height: 'var(--fb-dot)', borderRadius: '50%',
                           border: `2px dashed ${targetNote.color}`,
                           opacity: 0.5,
                         }} />
@@ -251,10 +250,10 @@ export default function FindTheNote({ selectedStrings: initialStrings, noteFilte
                       {/* Clicked dot */}
                       {clicked && (
                         <div style={{
-                          width: 24, height: 24, borderRadius: '50%',
+                          width: 'var(--fb-dot)', height: 'var(--fb-dot)', borderRadius: '50%',
                           background: clicked.correct ? '#2ecc71' : '#e74c3c',
                           display: 'flex', alignItems: 'center', justifyContent: 'center',
-                          fontSize: 9, fontWeight: 800, color: '#fff', zIndex: 1,
+                          fontSize: 'var(--fb-dot-font)', fontWeight: 800, color: '#fff', zIndex: 1,
                           boxShadow: `0 0 8px ${clicked.correct ? '#2ecc71' : '#e74c3c'}88`,
                         }}>
                           {clicked.correct ? '✓' : '✗'}
@@ -264,10 +263,10 @@ export default function FindTheNote({ selectedStrings: initialStrings, noteFilte
                       {/* Revealed correct position (not yet found) */}
                       {!clicked && isRevealedCorrect && (
                         <div style={{
-                          width: 24, height: 24, borderRadius: '50%',
+                          width: 'var(--fb-dot)', height: 'var(--fb-dot)', borderRadius: '50%',
                           border: `2px dashed ${targetNote.color}`,
                           display: 'flex', alignItems: 'center', justifyContent: 'center',
-                          fontSize: 9, fontWeight: 800, color: targetNote.color, zIndex: 1,
+                          fontSize: 'var(--fb-dot-font)', fontWeight: 800, color: targetNote.color, zIndex: 1,
                           opacity: 0.7,
                         }}>
                           {targetName}
@@ -278,7 +277,7 @@ export default function FindTheNote({ selectedStrings: initialStrings, noteFilte
                       {canClick && !clicked && (
                         <div style={{
                           position: 'absolute',
-                          width: 20, height: 20, borderRadius: '50%',
+                          width: 'var(--fb-dot)', height: 'var(--fb-dot)', borderRadius: '50%',
                           border: '1px dashed rgba(255,255,255,0.1)',
                           zIndex: 0,
                         }} />
@@ -293,8 +292,8 @@ export default function FindTheNote({ selectedStrings: initialStrings, noteFilte
 
         {/* Fret numbers */}
         <div style={{
-          display: 'grid', gridTemplateColumns: `44px repeat(${NUM_FRETS}, 1fr)`,
-          minWidth: 700, padding: '2px 4px 0',
+          display: 'grid', gridTemplateColumns: `var(--fb-label) repeat(${NUM_FRETS}, 1fr)`,
+          padding: '2px 4px 0',
         }}>
           <div />
           {[...Array(NUM_FRETS)].map((_, i) => (

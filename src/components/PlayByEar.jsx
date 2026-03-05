@@ -261,10 +261,9 @@ export default function PlayByEar({ selectedStrings: initialStrings, noteFilter:
           <div style={{ overflowX: 'auto', padding: '0 4px' }}>
             <div style={{
               display: 'grid',
-              gridTemplateColumns: `50px repeat(${NUM_FRETS}, 1fr)`,
-              gridTemplateRows: 'repeat(6, 34px)',
+              gridTemplateColumns: `var(--fb-label) repeat(${NUM_FRETS}, 1fr)`,
+              gridTemplateRows: 'repeat(6, var(--fb-row))',
               gap: 0,
-              minWidth: 700,
               position: 'relative',
               background: 'linear-gradient(180deg, #3e2723 0%, #4e342e 100%)',
               borderRadius: 8,
@@ -275,7 +274,7 @@ export default function PlayByEar({ selectedStrings: initialStrings, noteFilter:
             }}>
               {/* Fret marker dots */}
               <div style={{
-                position: 'absolute', top: 0, left: 50, right: 0, bottom: 0,
+                position: 'absolute', top: 0, left: 'var(--fb-label)', right: 0, bottom: 0,
                 display: 'grid',
                 gridTemplateColumns: `repeat(${NUM_FRETS}, 1fr)`,
                 pointerEvents: 'none', zIndex: 0,
@@ -322,10 +321,10 @@ export default function PlayByEar({ selectedStrings: initialStrings, noteFilter:
                       {isTargetString && position.fret === 0 && (
                         <div style={{
                           position: 'absolute',
-                          width: 26, height: 26, borderRadius: '50%',
+                          width: 'var(--fb-dot)', height: 'var(--fb-dot)', borderRadius: '50%',
                           background: result === 'correct' ? '#2ecc71' : result === 'wrong' ? '#e74c3c' : correctNote.color,
                           display: 'flex', alignItems: 'center', justifyContent: 'center',
-                          fontSize: 10, fontWeight: 800, color: '#000', zIndex: 1,
+                          fontSize: 'var(--fb-dot-font)', fontWeight: 800, color: '#000', zIndex: 1,
                           boxShadow: `0 0 10px ${result === 'correct' ? '#2ecc71' : result === 'wrong' ? '#e74c3c' : correctNote.color}88`,
                           animation: result === null ? 'pulse 1.2s ease-in-out infinite' : 'none',
                         }}>
@@ -352,10 +351,10 @@ export default function PlayByEar({ selectedStrings: initialStrings, noteFilter:
                           }} />
                           {isTarget && (
                             <div style={{
-                              width: 26, height: 26, borderRadius: '50%',
+                              width: 'var(--fb-dot)', height: 'var(--fb-dot)', borderRadius: '50%',
                               background: result === 'correct' ? '#2ecc71' : result === 'wrong' ? '#e74c3c' : correctNote.color,
                               display: 'flex', alignItems: 'center', justifyContent: 'center',
-                              fontSize: 10, fontWeight: 800, color: '#000', zIndex: 1,
+                              fontSize: 'var(--fb-dot-font)', fontWeight: 800, color: '#000', zIndex: 1,
                               boxShadow: `0 0 10px ${result === 'correct' ? '#2ecc71' : result === 'wrong' ? '#e74c3c' : correctNote.color}88`,
                               animation: result === null ? 'pulse 1.2s ease-in-out infinite' : 'none',
                             }}>

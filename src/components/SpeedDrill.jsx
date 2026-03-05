@@ -249,10 +249,9 @@ export default function SpeedDrill({ selectedStrings: initialStrings, noteFilter
       <div style={{ overflowX: 'auto', margin: '8px 0', padding: '0 4px' }}>
         <div style={{
           display: 'grid',
-          gridTemplateColumns: `50px repeat(${NUM_FRETS}, 1fr)`,
-          gridTemplateRows: 'repeat(6, 32px)',
+          gridTemplateColumns: `var(--fb-label) repeat(${NUM_FRETS}, 1fr)`,
+          gridTemplateRows: 'repeat(6, var(--fb-row))',
           gap: 0,
-          minWidth: 700,
           position: 'relative',
           background: 'linear-gradient(180deg, #3e2723 0%, #4e342e 100%)',
           borderRadius: 8,
@@ -262,7 +261,7 @@ export default function SpeedDrill({ selectedStrings: initialStrings, noteFilter
           {/* Fret marker dots overlay */}
           <div style={{
             position: 'absolute',
-            top: 0, left: 50, right: 0, bottom: 0,
+            top: 0, left: 'var(--fb-label)', right: 0, bottom: 0,
             display: 'grid',
             gridTemplateColumns: `repeat(${NUM_FRETS}, 1fr)`,
             pointerEvents: 'none',
@@ -311,10 +310,10 @@ export default function SpeedDrill({ selectedStrings: initialStrings, noteFilter
                   {isTargetString && position.fret === 0 && (
                     <div style={{
                       position: 'absolute',
-                      width: 22, height: 22, borderRadius: '50%',
+                      width: 'var(--fb-dot)', height: 'var(--fb-dot)', borderRadius: '50%',
                       background: flashColor || '#fff',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      fontSize: 9, fontWeight: 800, color: '#000', zIndex: 1,
+                      fontSize: 'var(--fb-dot-font)', fontWeight: 800, color: '#000', zIndex: 1,
                       boxShadow: `0 0 10px ${flashColor || '#fff'}88`,
                     }}>?</div>
                   )}
@@ -341,10 +340,10 @@ export default function SpeedDrill({ selectedStrings: initialStrings, noteFilter
                       {/* Target dot */}
                       {isTarget && (
                         <div style={{
-                          width: 22, height: 22, borderRadius: '50%',
+                          width: 'var(--fb-dot)', height: 'var(--fb-dot)', borderRadius: '50%',
                           background: flashColor || '#fff',
                           display: 'flex', alignItems: 'center', justifyContent: 'center',
-                          fontSize: 9, fontWeight: 800, color: '#000', zIndex: 1,
+                          fontSize: 'var(--fb-dot-font)', fontWeight: 800, color: '#000', zIndex: 1,
                           boxShadow: `0 0 10px ${flashColor || '#fff'}88`,
                           animation: !flashColor ? 'pulse 1.2s ease-in-out infinite' : 'none',
                         }}>?</div>

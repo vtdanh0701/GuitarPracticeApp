@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
 
 :root {
+  --fb-label: 50px;
+  --fb-row: 36px;
+  --fb-dot: 26px;
+  --fb-dot-font: 10px;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -20,6 +24,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 h1 {
@@ -76,5 +81,49 @@ input[type="range"]::-webkit-slider-thumb {
 ::-webkit-scrollbar-thumb {
   background: rgba(255,255,255,0.15);
   border-radius: 3px;
+}
+
+/* Responsive fretboard for mobile */
+@media (max-width: 768px) {
+  :root {
+    --fb-label: 28px;
+    --fb-row: 26px;
+    --fb-dot: 18px;
+    --fb-dot-font: 8px;
+  }
+}
+
+@media (max-width: 400px) {
+  :root {
+    --fb-label: 24px;
+    --fb-row: 22px;
+    --fb-dot: 16px;
+    --fb-dot-font: 7px;
+  }
+}
+
+/* Mobile touch improvements */
+@media (hover: none) and (pointer: coarse) {
+  /* Larger touch targets */
+  button {
+    min-height: 40px;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Prevent text selection on buttons during tap */
+  button, a {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Prevent zoom on double-tap */
+  * {
+    touch-action: manipulation;
+  }
 }
 
